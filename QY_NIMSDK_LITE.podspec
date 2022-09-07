@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|   
     s.name = 'QY_NIMSDK_LITE'
-    s.version = '8.9.3'   
+    s.version = '8.9.4'   
     s.summary = 'Netease IM Lite SDK'
     s.homepage = 'http://netease.im'   
     s.license = { :'type' => 'Copyright', :'text' => ' Copyright 2021 Netease '}  
@@ -11,3 +11,4 @@ Pod::Spec.new do |s|
     s.frameworks = 'SystemConfiguration', 'AVFoundation', 'CoreTelephony', 'AudioToolbox', 'CoreMedia' , 'VideoToolbox'   
     s.libraries = 'sqlite3.0', 'z', 'c++'  
    end 
+
