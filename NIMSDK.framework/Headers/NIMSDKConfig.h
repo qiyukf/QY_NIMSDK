@@ -14,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 @class NIMMessage;
 @class NIMChatroomCdnTrackInfo;
 @protocol NIMMsgIndexProduceDelegate;
-@class NIMLogDesensitizationConfig;
 
 /**
  *  SDK 配置委托
@@ -46,6 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)onChatroomCdnTrack:(NIMChatroomCdnTrackInfo *)trackInfo forRoom:(NSString *)roomID;
 
+-(NSString *) tokenCallback:(const NSString *)url;
 @end
 
 /**
@@ -244,18 +244,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString * flutterSDKVersion;
 
+//@property (nonatomic, strong)  NIMFcsConfig * fcsConfig;
+@property(nonatomic, assign) BOOL fcsEnable;
+@property(nonatomic, assign) NSInteger fcsAuthType;
+@property(nonatomic, strong) NSString *fcsUa;
+@property(nonatomic, strong) NSString *fcsRefer;
+
 /**
- * 日志脱敏配置
+ * 是否开启设备指纹功能
+ * 默认YES
  */
-@property (nonatomic, copy) NIMLogDesensitizationConfig *logDesensitizationConfig;
-
-@property (nonatomic, assign) BOOL isSingleTable;
-
-/**
- * 是否限制info类api在主线程执行，默认NO
- */
-@property (nonatomic,assign) BOOL infoApiOnMain;
-
+@property(nonatomic, assign) BOOL growDeviceEnabled;
 @end
 
 

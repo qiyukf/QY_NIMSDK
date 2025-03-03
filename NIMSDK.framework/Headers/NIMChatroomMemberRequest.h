@@ -166,6 +166,10 @@ typedef NS_ENUM(NSInteger, NIMChatroomMemberInfoUpdateTag) {
  */
 @property (nonatomic,assign) BOOL needSave;
 
+/**
+ * 对某些资料内容另外的反垃圾的业务ID
+ */
+@property (nonatomic,strong)    NSString *antispamBusinessId;
 
 @end
 

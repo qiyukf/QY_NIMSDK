@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  队列元素所属账号，默认不传表示队列元素属于当前操作人，管理员可以指定队列元素归属于其他合法账号。
  */
-@property (nonatomic,copy) NSString *elementAccid;
+@property (nonatomic,assign) NSString *elementAccid;
 
 @end
 

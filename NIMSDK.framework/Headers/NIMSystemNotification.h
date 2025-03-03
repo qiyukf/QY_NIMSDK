@@ -39,7 +39,30 @@ typedef NS_ENUM(NSInteger, NIMSystemNotificationType){
      *  添加好友
      */
     NIMSystemNotificationTypeFriendAdd              = 5,
-    
+    /**
+     *  删除好友
+     */
+    NIMSystemNotificationTypeDeleteFriend           = 6,
+    /**
+     *  p2p消息撤回通知
+     */
+    NIMSystemNotificationTypeRevokeP2PMsg           = 7,
+    /**
+     *  team消息撤回
+     */
+    NIMSystemNotificationTypeRevokeTeamMsg          = 8,
+    /**
+     *  superteam消息撤回
+     */
+    NIMSystemNotificationTypeRevokeSuperTeamMsg     = 12,
+    /**
+     *  p2p消息单向删除，发送方无感知，接收方消息会被清掉
+     */
+    NIMSystemNotificationTypeDeleteP2PMsg           = 13,
+    /**
+     *  team消息单向删除，发送方无感知，接收方消息会被清掉
+     */
+    NIMSystemNotificationTypeDeleteTeamMsg          =  14,
     /**
      *  申请入超大群
      */

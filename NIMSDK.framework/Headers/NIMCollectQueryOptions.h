@@ -42,11 +42,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) NSInteger type;
 
-/**
- * 所有收藏类型，默认为NO，如果设为YES，将忽略type属性，返回所有类型
- */
-@property (nonatomic, assign) BOOL allTypes;
-
 @end
 
 NS_ASSUME_NONNULL_END

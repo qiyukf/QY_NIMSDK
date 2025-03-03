@@ -59,6 +59,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, assign) BOOL invalid;
 
+/**
+ nertc的token有效期，表示token的过期时间，单位秒，选填，默认10分钟，会回填
+ */
+@property(nonatomic, assign)  long nertcTokenTtl;
+
+/**
+ nertc的token,加入rtc房间使用
+ */
+@property(nonatomic, copy)  NSString *nertcToken;
+
 @end
 
 #pragma mark - 频道成员相关对象

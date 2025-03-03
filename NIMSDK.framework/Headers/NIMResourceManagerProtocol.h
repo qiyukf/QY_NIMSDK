@@ -90,7 +90,7 @@ typedef void(^NIMFetchURLCompletion)(NSError * __nullable error, NSString * __nu
  *  上传文件
  *
  *  @param filepath   上传文件路径
- *  @param scene      场景类别
+ *  @param scene      场景分组
  *  @param progress   进度Block
  *  @param completion 上传Block
  */
@@ -103,7 +103,7 @@ typedef void(^NIMFetchURLCompletion)(NSError * __nullable error, NSString * __nu
  *  上传文件
  *
  *  @param filepath   上传文件路径
- *  @param scene      场景类别
+ *  @param scene      场景分组
  *  @param md5        文件MD5
  *  @param progress   进度Block
  *  @param completion 上传Block
@@ -126,6 +126,11 @@ typedef void(^NIMFetchURLCompletion)(NSError * __nullable error, NSString * __nu
      extraInfo:(nullable NIMResourceExtraInfo *)extraInfo
       progress:(nullable NIMHttpProgressBlock)progress
     completion:(nullable NIMUploadCompleteBlock)completion;
+
+- (void)checkFileQuickTransfer:(NSString *)MD5
+                      fileSize:(uint64_t)size
+                        option:(NIMResourceExtraInfo *)option
+                    completion:(NIMFileQuickTransferCompleteBlock)completion;
 
 /**
  *  下载文件
@@ -154,6 +159,23 @@ typedef void(^NIMFetchURLCompletion)(NSError * __nullable error, NSString * __nu
        extraInfo:(NIMResourceExtraInfo * _Nullable)extraInfo
         progress:(NIMHttpProgressBlock _Nullable)progress
       completion:(NIMDownloadCompleteBlock _Nullable)completion;
+
+/**
+ *  下载文件
+ *
+ *  @param urlString  下载的RL
+ *  @param filepath   下载路径
+ *  @param type       Fcs下载类型(特殊功能,开通请联系技术支持)
+ *  @param extraInfo  资源辅助信息
+ *  @param progress   进度Block
+ *  @param completion 完成Block
+ */
+- (void)download:(NSString *)urlString
+        filepath:(NSString *)filepath
+            type:(NSInteger)type
+       extraInfo:(NIMResourceExtraInfo *)info
+        progress:(NIMHttpProgressBlock)progress
+      completion:(NIMDownloadCompleteBlock)completion;
 
 /**
  *  取消上传/下载任务
@@ -248,7 +270,6 @@ typedef void(^NIMFetchURLCompletion)(NSError * __nullable error, NSString * __nu
 - (void)fetchNOSURLWithURL:(NSString *)shortCode
                     roomId:(NSString * _Nullable)roomId
                 completion:(NIMFetchURLCompletion)completion;
-
 @end
 
 

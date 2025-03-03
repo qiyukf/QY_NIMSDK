@@ -209,10 +209,6 @@ typedef NS_ENUM(NSInteger, NIMLocalErrorCode) {
      *  接口调用过于频繁
      */
     NIMLocalErrorCodeFrequentCallError = 27,
-    /**
-     *   和设置冲突
-     */
-    NIMLocalErrorCodeSettingConflictError = 28,
 };
 
 

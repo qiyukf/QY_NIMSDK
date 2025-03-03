@@ -100,6 +100,17 @@ NS_ASSUME_NONNULL_BEGIN
  是否存离线，YES表示存离线，NO表示不存离线，非必填，默认为NO
  */
 @property(nonatomic, assign) BOOL offlineEnabled;
+
+/**
+ nertc房间名，填了则会返回token
+ */
+@property(nullable, nonatomic, copy) NSString *nertcChannelName;
+
+/**
+ nertc的token有效期，表示token的过期时间，单位秒，选填，默认10分钟，会回填
+ */
+@property(nonatomic, assign)  long nertcTokenTtl;
+
 @end
 
 
@@ -280,6 +291,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nullable, nonatomic, copy) NSString *joinCustomInfo;
 
+/**
+ nertc房间名，填了则会返回token
+ */
+@property(nullable, nonatomic, copy) NSString *nertcChannelName;
+
+/**
+ nertc的token有效期，表示token的过期时间，单位秒，选填，默认10分钟，会回填
+ */
+@property(nonatomic, assign)  long nertcTokenTtl;
+
 @end
 
 
@@ -342,6 +363,16 @@ NS_ASSUME_NONNULL_BEGIN
  通知事件额外字段，非必填
  */
 @property(nullable, nonatomic, strong) NIMSignalingPushInfo *push;
+
+/**
+ nertc房间名，填了则会返回token
+ */
+@property(nullable, nonatomic, copy) NSString *nertcChannelName;
+
+/**
+ nertc的token有效期，表示token的过期时间，单位秒，选填，默认10分钟，会回填
+ */
+@property(nonatomic, assign)  long nertcTokenTtl;
 
 @end
 

@@ -28,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 @class NIMChatroomTempMuteTagRequest;
 @class NIMChatroomFetchMembersByTagRequest;
 @class NIMChatroomQueryMembersCountByTagRequest;
+@class NIMChatroomLocation;
+@class NIMChatroomTagsUpdate;
 
 
 /**
@@ -77,7 +79,6 @@ typedef void(^NIMChatroomMembersHandler)(NSError * __nullable error, NSArray<NIM
  */
 typedef void(^NIMChatroomMembersCountHandler)(NSError * __nullable error, uint64_t count);
 
-
 /**
  *  聊天室队列数据回调
  *
@@ -115,6 +116,7 @@ typedef void(^NIMFetchChatroomHistoryBlock)(NSError * __nullable error,NSArray<N
  * 聊天室动态token block
  */
 typedef NSString*(^NIMProvideChatroomDynamicTokenHandler)(NSString * __nullable roomId, NSString * __nullable account);
+
 
 
 /**
@@ -243,7 +245,10 @@ typedef NS_ENUM(NSInteger, NIMChatroomKickReason) {
  *
  *  @param roomId     聊天室ID
  *  @param completion 获取聊天室信息的回调
- *  @discussion 只有已进入聊天室才能够获取对应的聊天室信息
+ *  @discus
+ *
+ *
+ *  sion 只有已进入聊天室才能够获取对应的聊天室信息
  */
 - (void)fetchChatroomInfo:(NSString *)roomId
                completion:(nullable NIMChatroomInfoHandler)completion;
@@ -307,6 +312,23 @@ typedef NS_ENUM(NSInteger, NIMChatroomKickReason) {
  */
 - (void)queryChatroomMembersCountByTag:(NIMChatroomQueryMembersCountByTagRequest *)request
                        completion:(nullable NIMChatroomMembersCountHandler)completion;
+
+/**
+ * 更新坐标
+ * @param location 当前坐标和有效距离
+ * @param completion 请求完成回调
+ */
+-(void)updateLocation:(nonnull NIMChatroomLocation *)location
+        completion:(nullable NIMChatroomHandler)completion;
+
+/**
+ * 更新标签
+ * @param tags 标签
+ * @param completion 请求完成回调
+ */
+-(void)updateTags:(nonnull NIMChatroomTagsUpdate *)tags
+           completion:(nullable NIMChatroomHandler)completion;
+
 
 /**
  *  标记为聊天室管理员

@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface NIMMessageSetting : NSObject
 /**
- *  消息是否允许在消息历史中拉取
+ *  消息是否允许在消息历史中拉取（圈组支持）
  *  @discussion 默认为YES。 正常而言所有消息都会出现在通过 NIMConversationManager 调用(fetchMessageHistory:option:result:)返回的结果中，但是可以通过设置这个值来使得消息不出现在这其中。
  */
 @property (nonatomic,assign)    BOOL        historyEnabled;
@@ -30,17 +30,17 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic,assign)    BOOL        syncEnabled;
 /**
- *  消息是否需要被计入未读计数
+ *  消息是否需要被计入未读计数（圈组支持）
  *  @discussion 默认为YES。默认情况下，用户收到的所有消息都会被计入未读。设置这个为NO后，对应的消息被对端接受后将不计入未读消息计数内。
  */
 @property (nonatomic,assign)    BOOL        shouldBeCounted;
 /**
- *  消息是否需要推送
+ *  消息是否需要推送（圈组支持）
  *  @discussion 默认为YES。将这个字段设为NO，消息将不再有苹果推送通知。
  */
 @property (nonatomic,assign)    BOOL        apnsEnabled;
 /**
- *  推送是否需要带前缀(一般为昵称)
+ *  推送是否需要带前缀（一般为昵称，圈组支持）
  *  @discussion 默认为YES。将这个字段设为NO，推送消息将不带有前缀(xx:)。
  */
 @property (nonatomic,assign)    BOOL        apnsWithPrefix;
@@ -50,6 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @discussion 默认为YES，即默认会抄送消息给开发者的服务器(如果有配置的话)
  */
 @property (nonatomic,assign)    BOOL        routeEnabled;
+
 
 /**
  *  其他群成员收到此消息是否需要发送已读回执
@@ -64,13 +65,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign)    BOOL        persistEnable;
 
 /**
- 消息对应的场景
+ *  消息对应的场景
  */
 @property (nonatomic,strong)    NSString* scene;
 
 /**
-消息是否需要刷新到session服务。默认：是
-*/
+ *  消息是否需要刷新到session服务。默认：是
+ */
 @property (nonatomic,assign)    BOOL isSessionUpdate;
 
 /**
@@ -78,6 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @discussion 默认为NO。将这个字段设为YES，消息在SDK内部将以最高优先级处理并发送，但会抢占其他业务的处理资源。此选项仅对点对点，群组，超大群会话类型有效
  */
 @property (nonatomic,assign)    BOOL        quickDeliveryEnabled;
+
 
 @end
 

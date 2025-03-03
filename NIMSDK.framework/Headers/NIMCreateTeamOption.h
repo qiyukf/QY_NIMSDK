@@ -87,6 +87,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic,assign)    NSUInteger maxMemberCountLimitation;
 
+/**
+ * 对某些资料内容另外的反垃圾的业务ID
+ */
+@property (nonatomic,strong)    NSString *antispamBusinessId;
+
 
 @end
 

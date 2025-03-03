@@ -91,3 +91,52 @@
 @property(nullable, nonatomic, copy) NSString *tag;
 
 @end
+
+@interface NIMChatroomLocation : NSObject
+
+/**
+ *  聊天室ID
+ */
+@property(nullable, nonatomic, copy) NSString *roomId;
+/**
+ * X坐标
+ */
+@property (nonatomic, copy) NSNumber *locationX;
+/**
+ * Y坐标
+ */
+@property (nonatomic, copy) NSNumber *locationY;
+/**
+ * Z坐标
+ */
+@property (nonatomic, copy) NSNumber *locationZ;
+/**
+ * 距离
+ */
+@property (nonatomic, copy) NSNumber *distance;
+@end
+
+@interface NIMChatroomTagsUpdate : NSObject
+
+/**
+ *  聊天室ID
+ */
+@property(nullable, nonatomic, copy) NSString *roomId;
+/**
+ * 标签，可以设置多个，如果不传，则会删掉老的标签
+ */
+@property (nullable, nonatomic, copy) NSArray<NSString *> *tags;
+/**
+ * 更新标签的通知的目标标签，是一个标签表达式，同时也会改变该连接掉线时的通知对象，见TagCalculator和TagPattern，如果不传，则会删掉老的notifyTargetTags
+ */
+@property (nullable, nonatomic, copy) NSString *notifyTargetTags;
+/**
+ * 是否需要通知，填true则会产生一条通知，类型为325
+ */
+@property (nonatomic, assign) BOOL needNotify;
+/**
+ * 通知扩展字段
+ */
+@property (nullable, nonatomic, copy) NSString *ext;
+
+@end

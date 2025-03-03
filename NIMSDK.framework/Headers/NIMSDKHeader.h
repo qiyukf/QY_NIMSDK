@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class NIMSDKOption;
+@class NIMQChatOption;
 @class NIMServerSetting;
 
 /**
@@ -41,6 +42,8 @@ typedef void(^NIMUploadLogsHandler)(NSError *error, NSString *path);
  *  @return SDK版本号
  */
 - (NSString *)sdkVersion;
+
+- (NSString *)gitVersion;
 
 /**
  *  初始化SDK
@@ -76,6 +79,13 @@ typedef void(^NIMUploadLogsHandler)(NSError *error, NSString *path);
 - (BOOL)isUsingDemoAppKey;
 
 /**
+ *  设置圈组选项
+ *
+ *  @param option  圈组选项
+ */
+- (void)qchatWithOption:(NIMQChatOption *)option;
+
+/**
  *  更新APNS Token
  *
  *  @param token APNS Token
@@ -94,6 +104,18 @@ typedef void(^NIMUploadLogsHandler)(NSError *error, NSString *path);
        customContentKey:(nullable NSString *)key;
 
 /**
+ *  更新APNS Token
+ *
+ *  @param token APNS Token
+ *  @param key 自定义本端推送内容, 设置key可对应业务服务器自定义推送文案; 传@"" 清空配置, nil 则不更改
+ *  @param qchatKey 自定义圈组本端推送内容, 设置key可对应业务服务器自定义推送文案; 传@"" 清空配置, nil 则不更改
+ *  @return 格式化后的APNS Token
+ */
+- (NSString *)updateApnsToken:(NSData *)token
+             customContentKey:(nullable NSString *)key
+        qchatCustomContentKey:(nullable NSString *)qchatKey;
+
+/**x
  *  更新 PushKit Token
  *
  *  @param token PushKit token
@@ -140,6 +162,11 @@ typedef void(^NIMUploadLogsHandler)(NSError *error, NSString *path);
 - (void)uploadLogsWithAttach:(nullable NSString *)attach
                       roomId:(nullable NSString *)roomId
                   completion:(NIMUploadLogsHandler _Nullable)completion;
+
+/**
+ * 优化圈组表现
+ */
+- (void)optimizeQChat;
 
 
 /**
@@ -268,6 +295,41 @@ typedef void(^NIMUploadLogsHandler)(NSError *error, NSString *path);
  *   索引管理类
  */
 @property (nonatomic,strong,readonly)   id<NIMIndexManager> indexManager;
+
+/**
+ *  圈组管理类
+ */
+@property (nonatomic,strong,readonly)   id<NIMQChatManager> qchatManager;
+
+/**
+ *  圈组APNS推送管理类
+ */
+@property (nonatomic,strong,readonly)   id<NIMQChatApnsManager> qchatApnsManager;
+
+/**
+ *  圈组服务器管理类
+ */
+@property (nonatomic,strong,readonly)   id<NIMQChatServerManager> qchatServerManager;
+
+/**
+ *  圈组频道管理类
+ */
+@property (nonatomic,strong,readonly)   id<NIMQChatChannelManager> qchatChannelManager;
+
+/**
+ *  圈组身份组管理类
+ */
+@property (nonatomic,strong,readonly)   id<NIMQChatRoleManager> qchatRoleManager;
+
+/**
+ *  圈组消息管理类
+ */
+@property (nonatomic,strong,readonly)   id<NIMQChatMessageManager> qchatMessageManager;
+
+/**
+ *  圈组消息扩展管理类
+ */
+@property (nonatomic,strong,readonly)   id<NIMQChatMessageExtendManager> qchatMessageExtendManager;
 
 @end
 

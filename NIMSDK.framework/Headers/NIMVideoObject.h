@@ -7,7 +7,8 @@
 //
 
 #import "NIMMessageObjectProtocol.h"
-
+#define NIMVideoMp4Ext  (@"mp4")
+#define NIMVideoThumbExt (@"jpg")
 NS_ASSUME_NONNULL_BEGIN
 
 /**

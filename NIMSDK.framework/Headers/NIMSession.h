@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
 /**
  *  会话类型
  */
@@ -34,9 +35,12 @@ typedef NS_ENUM(NSInteger, NIMSessionType){
      *  超大群
      */
     NIMSessionTypeSuperTeam = 5,
+
+    /**
+     *  圈组
+     */
+    NIMSessionTypeQChat = 6,
 };
-
-
 
 
 /**
@@ -54,6 +58,15 @@ typedef NS_ENUM(NSInteger, NIMSessionType){
  */
 @property (nonatomic,assign,readonly)       NIMSessionType sessionType;
 
+/**
+ * 圈组频道ID
+ */
+@property (nonatomic,readonly)              unsigned long long qchatChannelId;
+
+/**
+ * 圈组服务器ID
+ */
+@property (nonatomic,readonly)              unsigned long long qchatServerId;
 
 /**
  *  通过id和type构造会话对象
@@ -65,7 +78,20 @@ typedef NS_ENUM(NSInteger, NIMSessionType){
  */
 + (instancetype)session:(NSString *)sessionId
                    type:(NIMSessionType)sessionType;
+
+/**
+ *  通过圈组频道ID和圈组服务器ID构造会话对象
+ *
+ *  @param qchatChannelId   圈组频道ID
+ *  @param qchatServerId 圈组服务器ID
+ *
+ *  @return 会话对象实例
+ */
++ (instancetype)sessionForQChat:(long long)qchatChannelId
+                  qchatServerId:(long long)qchatServerId;
+
 + (nullable instancetype)sessionFromString:(NSString *)sessionString;
 @end
 
 NS_ASSUME_NONNULL_END
+

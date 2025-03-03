@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NIMSession.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class NIMMessage;
-@class NIMSession;
+//@class NIMSession;
 @class NIMRecentSession;
 @class NIMRecentSessionOption;
 @class NIMHistoryMessageSearchOption;
@@ -231,7 +232,6 @@ typedef NS_ENUM(NSUInteger, NIMClearMessagesStatus)
     NIMClearMessagesStatusServerFailed,
 };
 
-
 /**
  *  会话管理器回调
  */
@@ -258,6 +258,16 @@ typedef NS_ENUM(NSUInteger, NIMClearMessagesStatus)
 - (void)didAddRecentSession:(NIMRecentSession *)recentSession
            totalUnreadCount:(NSInteger)totalUnreadCount;
 
+///**
+// *  增加最近会话的回调
+// *
+// *  @param recentSession    最近会话
+// *  @param totalUnreadCount 目前总未读数
+// *  @discussion 当新增一条消息，并且本地不存在该消息所属的会话时，会触发此回调。
+// */
+//- (void)didAddRecentSession:(NSDictionary <NSNumber *, NIMRecentSession *> *)recentSessions
+//           totalUnreadCount:(NSDictionary <NSNumber *, NSNumber *> *)unreadCounts;
+
 /**
  *  最近会话修改的回调
  *
@@ -270,6 +280,18 @@ typedef NS_ENUM(NSUInteger, NIMClearMessagesStatus)
  */
 - (void)didUpdateRecentSession:(NIMRecentSession *)recentSession
               totalUnreadCount:(NSInteger)totalUnreadCount;
+///**
+// *  最近会话修改的回调
+// *
+// *  @param recentSession    最近会话
+// *  @param totalUnreadCount 目前根据sessionType 划分的未读数
+// *  @discussion 触发条件包括: 1.当新增一条消息，并且本地存在该消息所属的会话。
+// *                          2.所属会话的未读清零。
+// *                          3.所属会话的最后一条消息的内容发送变化。(例如成功发送后，修正发送时间为服务器时间)
+// *                          4.删除消息，并且删除的消息为当前会话的最后一条消息。
+// */
+//- (void)didUpdateRecentSession:(NSDictionary <NSNumber *, NIMRecentSession *> *)recentSessions
+//                   unreadCount:(NSDictionary <NSNumber *, NSNumber *> *)unreadCounts;
 
 /**
  *  删除最近会话的回调
@@ -280,6 +302,12 @@ typedef NS_ENUM(NSUInteger, NIMClearMessagesStatus)
 - (void)didRemoveRecentSession:(NIMRecentSession *)recentSession
               totalUnreadCount:(NSInteger)totalUnreadCount;
 
+/**
+ *  未读数更新的回调 (markRead不会走此回调)
+ *
+ *  @param unreadCountDic 各类型未读数的字典: [@(NIMSessionType): @(条数)]
+ */
+- (void)didUpdateUnreadCountDic:(NSDictionary *)unreadCountDic;
 
 /**
  *  单个会话里所有消息被删除的回调
@@ -303,6 +331,13 @@ typedef NS_ENUM(NSUInteger, NIMClearMessagesStatus)
  *  所有消息已读的回调
  */
 - (void)allMessagesRead;
+
+/**
+ *  消息已读的回调
+ *
+ *  @param type 消息所属会话类型
+ */
+- (void)messagesReadOfType:(NIMSessionType)type;
 
 /**
  *  会话服务，会话更新
@@ -521,12 +556,21 @@ typedef NS_ENUM(NSUInteger, NIMClearMessagesStatus)
 *  @discussion 异步方法，删除最近会话，但保留会话内消息
 */
 - (void)deleteRecentSession:(NIMRecentSession *)recentSession option:(NIMDeleteRecentSessionOption *)option completion:(NIMRemoveRemoteSessionBlock)completion;
+
 /**
  *  设置所有会话消息为已读
  *
  *  @discussion 异步方法，消息会标记为设置的状态。不会触发单条 recentSession 更新的回调，但会触发回调 - (void)allMessagesRead
  */
 - (void)markAllMessagesRead;
+
+/**
+ *  设置会话消息为已读
+ *
+ *  @param type 会话类型
+ *  @discussion 异步方法，消息会标记为设置的状态。不会触发单条 recentSession 更新的回调，但会触发回调 - (void)messagesReadOfType:
+ */
+- (void)markMessagesReadOfType:(NIMSessionType)type;
 
 /**
  *  批量设置多个会话消息已读
@@ -645,6 +689,13 @@ typedef NS_ENUM(NSUInteger, NIMClearMessagesStatus)
  */
 - (NSInteger)allUnreadCount;
 
+/**
+ *  按 SessionType 获取未读数
+ *  @discussion  只能在主线程调用,包括忽略提醒的会话
+ *  @param type   会话类型
+ *  @return 未读数
+ */
+- (NSInteger)unreadCountOfType:(NIMSessionType)type;
 
 /**
  *  获取所有需要通知/不需要通知的最近会话未读数
@@ -653,6 +704,7 @@ typedef NS_ENUM(NSUInteger, NIMClearMessagesStatus)
  *  @discussion 群只有 notify state != NIMTeamNotifyStateNone 才算是不允许通知
  */
 - (NSInteger)allUnreadCount:(BOOL)notify;
+
 
 - (NSArray *)allUnreadMessagesInSession: (NIMSession *)session;
 

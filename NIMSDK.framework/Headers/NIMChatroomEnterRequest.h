@@ -37,6 +37,11 @@ typedef void(^NIMRequestChatroomAddressesHandler)(NSString *roomId,NIMRequestCha
 @property (nullable,nonatomic,copy)  NSString    *username;
 
 /**
+ * 如果username为nil，则使用匿名登录，此变量决定了匿名账号。如果为nil，则由SDK自动生成
+ */
+@property (nullable,nonatomic,copy)  NSString    *anonName;
+
+/**
  *  独立模式下的 Token
  *  @discussion 当用户名为空时，token 无效
  */
@@ -142,6 +147,36 @@ typedef NS_ENUM(NSInteger, NIMChatroomLoginAuthType) {
  */
 @property (nonatomic, strong) NIMProvideChatroomDynamicTokenHandler dynamicTokenHandler;
 
+/**
+ * 扩展字段
+ */
+@property (nullable,nonatomic,strong) NSString *loginExt;
+
+/**
+ * 坐标x
+ */
+@property (nonatomic, strong) NSDecimalNumber *locationX;
+
+/**
+ * 坐标y
+ */
+@property (nonatomic, strong) NSDecimalNumber *locationY;
+
+/**
+ * 坐标z
+ */
+@property (nonatomic, strong) NSDecimalNumber *locationZ;
+
+/**
+ * 订阅的消息的距离
+ */
+@property (nonatomic, strong) NSDecimalNumber *distance;
+
+/**
+ * 对某些资料内容另外的反垃圾的业务ID
+ */
+@property (nullable, nonatomic, copy)    NSString *antispamBusinessId;
+
 @end
 
 
@@ -149,4 +184,3 @@ typedef NS_ENUM(NSInteger, NIMChatroomLoginAuthType) {
 
 
 NS_ASSUME_NONNULL_END
-

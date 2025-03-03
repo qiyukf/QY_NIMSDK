@@ -201,14 +201,21 @@ typedef NS_ENUM(NSInteger, NIMMessageStatus) {
 @property (nullable,nonatomic,copy) NSString *yidunAntiSpamRes;
 
 /**
+ * X坐标，仅用于聊天室
+ */
+@property (nonatomic, copy) NSNumber *locationX;
+/**
+ * Y坐标，仅用于聊天室
+ */
+@property (nonatomic, copy) NSNumber *locationY;
+/**
+ * Z坐标。仅用于聊天室
+ */
+@property (nonatomic, copy) NSNumber *locationZ;
+/**
  * 消息接受者列表，仅用于聊天室
  */
 @property (nonatomic, copy) NSArray<NSString *> *toAccIds;
-
-/**
- * 高优消息是否需要ack，默认为NO
- */
-@property (nonatomic, assign) BOOL needHighPriorityMsgAck;
 
 /**
 *  消息的目标标签表达式

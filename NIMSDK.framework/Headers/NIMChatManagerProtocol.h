@@ -199,6 +199,31 @@ typedef void(^NIMChatManagerBlock)(NSError * __nullable error);
 
 
 /**
+ *  生成转发消息
+ *  得到转发消息后，开发者需要自己再调用sendForwardMessage:toSession:error: 进行发送, 和 直接调用forwardMessage:toSession:error:效果一样，但是这样可以得到转发消息的进度方法回调和是否转发成功方法回调
+ *
+ *  @param message 要转发的消息
+ *  @param error   错误 如果在准备发送消息阶段发生错误,这个error会被填充相应的信息
+ *
+ *  @return 生成的需要转发的消息
+ */
+- (NIMMessage *)makeForwardMessageFromMessage:(NIMMessage *)message
+                                        error:(NSError *__autoreleasing  _Nullable * _Nullable)error;
+
+/**
+ *  发送生成的转发消息
+ *
+ *  @param message 转发消息
+ *  @param session 接受方
+ *  @param error   错误 如果在准备发送消息阶段发生错误,这个error会被填充相应的信息
+ *
+ *  @return 是否调用成功,这里返回的 result 只是表示当前这个函数调用是否成功,需要后续的回调才能够判断消息是否已经发送至服务器
+ */
+- (BOOL)sendForwardMessage:(NIMMessage *)message
+          toSession:(NIMSession *)session
+              error:(NSError * __nullable *)error;
+
+/**
  *  转发消息
  *
  *  @param message 消息

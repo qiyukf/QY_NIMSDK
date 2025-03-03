@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class NIMMessage;
-
+@class NIMQChatMessage;
 
 /**
  *  消息体协议
@@ -23,6 +23,11 @@ NS_ASSUME_NONNULL_BEGIN
  *  消息体所在的消息对象
  */
 @property (nullable,nonatomic, weak) NIMMessage *message;
+
+/**
+ *  消息体所在的消息对象（圈组消息）
+ */
+@property (nullable,nonatomic, weak) NIMQChatMessage *qchatMessage;
 
 /**
  *  消息内容类型

@@ -66,6 +66,11 @@ typedef NS_ENUM(NSInteger, NIMUserInfoUpdateTag) {
      *  扩展字段
      */
     NIMUserInfoUpdateTagExt = 10,
+
+    /**
+     * 对某些资料内容另外的反垃圾的业务ID
+     */
+    NIMUserInfoUpdateTagAntispamBusinessId = 101,
 };
 
 /**

@@ -111,6 +111,11 @@ typedef NS_ENUM(NSInteger, NIMChatroomEventType){
      * 批量添加聊天室队列元素，包括的字段是ext、opeNick、operator、queueChange字段
      */
     NIMChatroomEventTypeQueueBatchAdd = 324,
+    
+    /**
+     * 批量更新聊天室标签
+     */
+    NIMChatroomEventTypeUpdateTags = 325,
 };
 
 /**

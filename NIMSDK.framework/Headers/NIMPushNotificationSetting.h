@@ -24,11 +24,46 @@ typedef NS_ENUM(NSInteger, NIMPushNotificationDisplayType){
     NIMPushNotificationDisplayTypeNoDetail = 2,
 };
 
+/**
+ *  推送消息等级配置类型
+ *  @discussion 低等级消息：普通消息等（没有具体目标、没有@意愿）。中等级消息：@所有人等（没有具体目标、有@意愿）。高等级消息： @某些人等（有具体目标、有@意愿）
+ */
+typedef NS_ENUM(NSInteger, NIMPushNotificationProfile){
+    /**
+     *  未指定
+     */
+    NIMPushNotificationProfileNotSet = 0,
+
+    /**
+     *  全部消息都收
+     */
+    NIMPushNotificationProfileEnableAll = 1,
+
+    /**
+     *  只收高、中等级消息
+     */
+    NIMPushNotificationProfileOnlyHighAndMediumLevel = 2,
+
+    /**
+     *  只收高等级消息
+     */
+    NIMPushNotificationProfileOnlyHighLevel = 3,
+
+    /**
+     *  全部消息都不收
+     */
+    NIMPushNotificationProfileDisableAll = 4,
+
+    /**
+     *  使用平台默认配置
+     */
+    NIMPushNotificationProfilePlatformDefault = 5,
+};
 
 /**
  *  消息推送免打扰参数设置
  */
-@interface NIMPushNotificationSetting : NSObject
+@interface NIMPushNotificationSetting : NSObject<NSCopying>
 /**
  *  推送消息显示类型
  */
@@ -58,6 +93,11 @@ typedef NS_ENUM(NSInteger, NIMPushNotificationDisplayType){
  *  免打扰结束时间:分
  */
 @property (nonatomic,assign) NSUInteger noDisturbingEndM;
+
+/**
+ *  推送消息等级配置（当前仅在圈组中设置有效）
+ */
+@property (nonatomic,assign)    NIMPushNotificationProfile  profile;
 
 @end
 

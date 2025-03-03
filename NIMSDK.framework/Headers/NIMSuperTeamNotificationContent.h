@@ -108,8 +108,12 @@ typedef NS_ENUM(NSInteger, NIMSuperTeamUpdateTag){
      *  群全体禁言
      *  @discussion SDK 无法直接修改这个字段, 请调用服务器接口
      */
-    NIMSuperTeamUpdateTagMuteMode       = 101
+    NIMSuperTeamUpdateTagMuteMode       = 101,
 
+    /**
+     * 对某些资料内容另外的反垃圾的业务ID
+     */
+    NIMSuperTeamUpdateTagAntispamBusinessId = 102,
 };
 
 /**

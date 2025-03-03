@@ -116,8 +116,11 @@ typedef NS_ENUM(NSInteger, NIMTeamUpdateTag){
     /**
      *  群全体禁言
      */
-    NIMTeamUpdateTagMuteMode       = 100
-    
+    NIMTeamUpdateTagMuteMode       = 100,
+    /**
+     * 对某些资料内容另外的反垃圾的业务ID
+     */
+    NIMTeamUpdateTagAntispamBusinessId = 101,
 };
 
 
